@@ -66,7 +66,7 @@ define([
             context.setContext(this._contextObject.getEntity(), this._contextObject.getGuid());
             mx.data.callNanoflow({
               nanoflow: this.classGetterNanoflow,
-              context: this._contextObject.getContext(),
+              context: context,
               callback: lang.hitch(this, function (returnedString) {
                 this._replaceClasses(returnedString);
               }),
