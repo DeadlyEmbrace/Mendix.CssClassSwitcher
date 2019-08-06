@@ -9,7 +9,7 @@ define([
     return declare("CssClassSwitcher.widget.CssClassSwitcherAttributeBased", [ _WidgetBase ], {
 
         // modeler params
-
+        inputTypeSelector: "",
         classGetterAttribute: "",
         elementSelector: "",
         classesToRemove: "",
@@ -19,13 +19,14 @@ define([
         _elementsToApplyTo: null,
 
         postCreate: function () {
+          console.debug(this.id + ".postCreate - Selected '" + this.inputTypeSelector + "' for CSS class retrieval");
           this.domNode.style.display = "none";
           this._elementsToApplyTo = this.elementSelector
             ? Array.prototype.slice.call(document.querySelectorAll(this.elementSelector)) // NodeList to Array, cross-browser safe
             : [this.domNode.parentNode];
         },
         
-        update: function (obj, callback) {          
+        update: function (obj, callback) {  
           if(obj)
           {
             this._contextObject = obj;
@@ -42,17 +43,14 @@ define([
 
         _updateRendering: function () {
           if(this._contextObject === null) {
-            console.error("SWITCHER - No object received for call");
+            console.warn(this.id + " - No object received for call");
             return;
           }
 
-          // So this is nice and light-weight. Only real issue is that the attribute uses the name, which cannot contain a -
-          if(this.classGetterAttribute) {
+          if(this.inputTypeSelector === 'attribute' && this.classGetterAttribute) {
             let selectedTheme = this._contextObject.get(this.classGetterAttribute);
             this._replaceClasses(selectedTheme);
-          }
-
-          if (this.classGetterMicroflow) {
+          } else if (this.inputTypeSelector === 'microflow' && this.classGetterMicroflow) {
             mx.data.action({
               params: {
                 actionname: this.classGetterMicroflow, 
@@ -63,11 +61,11 @@ define([
                 this._replaceClasses(returnedString);
               }),
               error: lang.hitch(this, function(error) {
-                logger.error("Error in microflow " + this.classGetterMicroflow);
+                logger.error(this.id + " - Error in microflow " + this.classGetterMicroflow);
                 logger.error(error);
               })
             });
-          } else if (this.classGetterNanoflow && this.classGetterNanoflow.nanoflow) {
+          } else if (this.inputTypeSelector === 'nanoflow' && this.classGetterNanoflow) {
             var context = new mendix.lib.MxContext();
             context.setContext(this._contextObject.getEntity(), this._contextObject.getGuid());
             mx.data.callNanoflow({
@@ -77,15 +75,17 @@ define([
                 this._replaceClasses(returnedString);
               }),
               error: lang.hitch(this, function(error) {
-                logger.error("Error in nanoflow " + this.classGetterNanoflow);
+                logger.error(this.id + " - Error in nanoflow " + this.classGetterNanoflow);
                 logger.error(error);
               })
             });
-          };
+          } else {
+            console.error(this.id + " - No valid data source was selected to retrieve CSS classes for theme switching")
+          }
         },
 
         _replaceClasses: function (classesToAdd) {
-          console.log("SWITCHER - Replacing classes with " + classesToAdd);
+          console.debug(this.id + " - Replacing classes with " + classesToAdd);
           var _this = this;
           // split by space
           var _toRemove = this.classesToRemove.split(" ");
