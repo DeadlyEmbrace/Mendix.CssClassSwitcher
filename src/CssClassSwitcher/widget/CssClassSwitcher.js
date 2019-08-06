@@ -13,9 +13,8 @@ define([
         classGetterNanoflow: "",
         elementSelector: "",
         classesToRemove: "",
-        
+
         // internals
-        _contextObject: null,
         _elementsToApplyTo: null,
 
         postCreate: function () {
@@ -25,34 +24,29 @@ define([
             : [this.domNode.parentNode];
         },
         
-        update: function (obj, callback) {          
+
+        update: function (obj, callback) {
+          this._updateRendering();
+          
           if(obj)
           {
-            this._contextObject = obj;
+            console.log("Subscribed to changes for object with guid: " + obj.getGuid());
             this.subscribe({
               guid: obj.getGuid(),
               callback: function(guid) {
+                  console.log("Object with guid " + guid + " changed");
                   this._updateRendering();
               }
             });
           }
-          this._updateRendering();
           callback();
         },
 
         _updateRendering: function () {
-          if(this._contextObject === null) {
-            console.error("SWITCHER - No object received for call");
-            return;
-          }
-
+          console.log("SWITCHER - Updating the rendering");
           if (this.classGetterMicroflow) {
             mx.data.action({
-              params: {
-                actionname: this.classGetterMicroflow, 
-                applyto: "selection",
-                guids: [this._contextObject.getGuid()]
-              },
+              params: {actionname: this.classGetterMicroflow, applyto: "none"},
               callback: lang.hitch(this, function (returnedString) {
                 this._replaceClasses(returnedString);
               }),
@@ -62,11 +56,8 @@ define([
               })
             });
           } else if (this.classGetterNanoflow && this.classGetterNanoflow.nanoflow) {
-            var context = new mendix.lib.MxContext();
-            context.setContext(this._contextObject.getEntity(), this._contextObject.getGuid());
             mx.data.callNanoflow({
               nanoflow: this.classGetterNanoflow,
-              context: context,
               callback: lang.hitch(this, function (returnedString) {
                 this._replaceClasses(returnedString);
               }),
@@ -93,11 +84,13 @@ define([
           this._elementsToApplyTo.forEach(function (_element) {
             _toRemove.forEach(function (_class) {
               if (_element.classList.contains(_class)) {
+                //logger.debug(_this.friendlyId + ": removing class '" + _class + "' from element '", _element);
                 _element.classList.remove(_class);
               }
             });
             _toAdd.forEach(function (_class) {
               if (!_element.classList.contains(_class)) {
+                //logger.debug(_this.friendlyId + ": adding class '" + _class + "' to element: '", _element);
                 _element.classList.add(_class);
               }
             });
