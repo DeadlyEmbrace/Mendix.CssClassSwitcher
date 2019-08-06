@@ -1,8 +1,8 @@
 {
-  "name": "CssClassSwitcher",
-  "version": "1.0.0",
+  "name": "EpiUseCssClassSwitcher",
+  "version": "2.1.1",
   "description": "My brand new Mendix widget",
-  "license": "Apache 2",
+  "license": "MIT",
   "author": "Sergiusz Woznicki",
   "private": true,
   "dependencies": {
