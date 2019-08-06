@@ -36,6 +36,12 @@
   --chart-border-stroke-color: #9b9b9b;
   --chart-fill-color: #252525;
   --sidebar-background-color: #557a97;  
+
+  --label-font-size: 14px;
+  --control-label-font-size: 14px;
+  --h3-font-size: 24px;
+  --h4-font-size: 16px;
+  --input-control-font-size: 16px;
 }
 
 .theme-dark {
@@ -110,6 +116,62 @@
   --chart-border-stroke-color: #d9aba7;
   --chart-fill-color: #f2eae4;
   --sidebar-background-color: #73203e;
+}
+
+.font-small {
+  --label-font-size: 10px;
+  --control-label-font-size: 10px;
+  --h3-font-size: 20px;
+  --h4-font-size: 12px;
+  --input-control-font-size: 12px;
+}
+
+.font-large {
+  --label-font-size: 20px;
+  --control-label-font-size: 20px;
+  --h3-font-size: 28px;
+  --h4-font-size: 20px;
+  --input-control-font-size: 20px;
+}
+
+label {
+  font-size: var(--label-font-size);
+}
+
+.form-group .control-label {
+  font-size: var(--control-label-font-size);
+}
+
+.sort-header {
+  font-size: var(--label-font-size);
+}
+
+.btn {
+  font-size: var(--label-font-size);
+}
+
+a {
+  font-size: var(--label-font-size);
+}
+
+.widget-charts .svg-container text {
+  font-size: var(--label-font-size) !important;
+}
+
+.region-sidebar .mx-navigationtree .navbar-inner > ul > li > a {
+  font-size: var(--label-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+h4 {
+  font-size: var(--h4-font-size);
+}
+
+.form-control {
+  font-size: var(--label-font-size);
 }
 
 ::selection {
