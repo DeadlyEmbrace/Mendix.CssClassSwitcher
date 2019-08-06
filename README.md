@@ -1,6 +1,6 @@
 # Css Class Switcher
 
-A Mendix widget that adds CSS classes determined by a microflow (or nanoflow) to elements determined by CSS selector.
+A Mendix widget that adds CSS classes determined by an attribute, microflow or nanoflow to elements determined by CSS selector.
 
 ## Typical usage scenario
 
@@ -16,9 +16,14 @@ It's useful in applications that need to **determine styling** based on **arbitr
 
 ## Usage
 
+The widget comes in two variants, one that operates within a context and one without.
+The context based widget can be used to change the theme dynamically based on context refresh.
+
 Place the widget inside your app and provide the following settings:
+- `Theme selection method`: Method by which the theme should be selected, either `Attribute`, `Microflow` or `Nanoflow`
+- `Attribute`: (Context based widget only) Attribute that contains the name of the CSS classes that should be added to target elements.
 - `Microflow`: A microflow that has no parameters and returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.
-- `Nanoflow`: Alternatively, you can use a nanoflow instead of microflow - as above.
+- `Nanoflow`: A nanoflow that returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.
 - `Target element selector`: Optional CSS selector of target elements to add the classes to. If empty, the parent element of the widget will be used.
 - `CSS classes to remove`: Optional CSS classes to be removed from the target elements. Multiple classes can be seperated with a space.
 

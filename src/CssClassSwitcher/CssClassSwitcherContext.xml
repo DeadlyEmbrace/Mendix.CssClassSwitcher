@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="CssClassSwitcher.widget.CssClassSwitcherContext" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>CssClassSwitcher(Context)</name>
+    <description>Adds CSS classes determined by a microflow to elements determined by CSS selector. This widget requires a context and will switch the theme based on the context</description>
+
+    <icon>
+      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
+    </icon>
+
+    <properties>
+        <property key="inputTypeSelector" type="enumeration" defaultValue="attribute" required="true">
+          <caption>Theme selection method</caption>
+          <category>Data source</category>
+          <description>Select the method the widget uses to get the CSS classes to add to target elements.</description>
+          <enumerationValues>
+            <enumerationValue key="attribute">Attribute</enumerationValue>
+            <enumerationValue key="microflow">Microflow</enumerationValue>
+            <enumerationValue key="nanoflow">Nanoflow</enumerationValue>
+          </enumerationValues>
+        </property>        
+        <property key="classGetterAttribute" type="attribute" required="false" defaultValue="">
+            <caption>Attribute</caption>
+            <category>Data source</category>
+            <description>Attribute that contains the name of the CSS classes that should be added to target elements.</description>
+            <attributeTypes>
+                <attributeType name="String" />
+                <attributeType name="Enum" />
+            </attributeTypes>
+        </property>
+        <property key="classGetterMicroflow" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Data source</category>
+            <description>A microflow that returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.</description>
+            <returnType type="String" />
+        </property>
+        <property key="classGetterNanoflow" type="nanoflow" required="false" defaultValue="">
+            <caption>Nanoflow</caption>
+            <category>Data source</category>
+            <description>A nanoflow that returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.</description>
+            <returnType type="String" />
+        </property>
+
+        <property key="elementSelector" type="string" required="false" defaultValue="">
+            <caption>Target element selector</caption>
+            <category>Behavior</category>
+            <description>Optional CSS selector of target elements to add the classes to. If empty, the parent element of the widget will be used.</description>
+        </property>
+        <property key="classesToRemove" type="string" required="false" defaultValue="">
+            <caption>CSS classes to remove</caption>
+            <category>Behavior</category>
+            <description>Optional CSS classes to be removed from the target elements. Multiple classes can be seperated with a space.</description>
+        </property>
+    </properties>
+</widget>
