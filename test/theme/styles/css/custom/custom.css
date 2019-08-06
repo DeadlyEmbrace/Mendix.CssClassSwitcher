@@ -1,5 +1,7 @@
 :root {
   --text-color: #3a4650;
+  --control-label-color: #3a4650;
+  --radio-button-text-color: #3a4650;
   --background-color: #ffffff;
   --list-background-nth-child: #ffffff;
   --heading-color: #808e9a;
@@ -33,11 +35,13 @@
   --chart-background-color: #ffffff;
   --chart-border-stroke-color: #9b9b9b;
   --chart-fill-color: #252525;
-  --sidebar-background-color: #557a97;
+  --sidebar-background-color: #557a97;  
 }
 
 .theme-dark {
   --text-color: #999;
+  --control-label-color: #999;
+  --radio-button-text-color: #999;
   --background-color: #222222;
   --list-background-nth-child: #111;
   --heading-color: #999;
@@ -71,16 +75,61 @@
   --sidebar-background-color: #222222;
 }
 
+.theme-purple {
+  --text-color: #f2eae4;
+  --control-label-color: #f2eae4;
+  --radio-button-text-color: #f2eae4;
+  --background-color: #73203e;
+  --list-background-nth-child: #73203e;
+  --heading-color: #d9aba7;
+  --sidebar-color: #73203e;
+  --sidebar-glyphicon-color: #f2eae4;
+  --button-border-color: #e5e5e5;
+  --button-text-color: #d9aba7;
+  --mx-link-color: #f2eae4;
+  --form-background-color: #73203e;
+  --form-border-color: #73203e;
+  --form-text-color: #f2eae4;
+  --card-background-color: #73203e;
+  --card-dropshadow-color: #373640;
+  --card-progress-state1-background: #eceef0;
+  --card-progress-state1-border: #eceef0;
+  --card-progress-state2-background: #0078e2;
+  --card-progress-state2-border: #0078e2;
+  --card-progress-state3-background: #ff7f32;
+  --card-progress-state3-border: #ff7f32;
+  --top-bar-background-color: #73203e;
+  --top-bar-url: url("/img/MyFirstModule$Images$objectivity_logo_white.svg") no-repeat;
+  --scrollbar-track-color: #373640;
+  --scrollbar-thumb-color: #73203e;
+  --topbar-shadow-color: #373640;
+  --region-content-color: #d92b6b;
+  --header-sort-container-color: #f2eae4;
+  --header-sort-container-border-color: #f2eae4;
+  --chart-background-color: transparent;
+  --chart-border-stroke-color: #d9aba7;
+  --chart-fill-color: #f2eae4;
+  --sidebar-background-color: #73203e;
+}
+
 ::selection {
   background-color: #0078e2;
   color: #ffffff;
+}
+
+.form-group .control-label {
+  color: var(--control-label-color);
+}
+
+.radio-inline {
+  color: var(--radio-button-text-color);
 }
 
 a {
   color: var(--text-color);
 }
 
-.mx-listview .mx-listview-list .mx-listview-item {
+.mx-listview .mx-listview-list3 .mx-listview-item {
   border-width: 0 0 1px;
   padding: 15px 0;
 }
