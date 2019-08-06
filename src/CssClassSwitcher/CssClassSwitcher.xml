@@ -11,7 +11,7 @@
         <property key="classGetterMicroflow" type="microflow" required="false" defaultValue="">
             <caption>Microflow</caption>
             <category>Behavior</category>
-            <description>A microflow that has no parameters and returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.</description>
+            <description>A microflow that returns a string with CSS classes that should be added to target elements. Multiple classes can be seperated with a space.</description>
             <returnType type="String" />
         </property>
         <property key="classGetterNanoflow" type="nanoflow" required="false" defaultValue="">
