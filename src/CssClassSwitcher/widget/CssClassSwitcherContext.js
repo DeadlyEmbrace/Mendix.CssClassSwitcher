@@ -80,7 +80,7 @@ define([
               })
             });
           } else {
-            console.error(this.id + " - No valid data source was selected to retrieve CSS classes for theme switching")
+            logger.error(this.id + " - No valid data source was selected to retrieve CSS classes for theme switching")
           }
         },
 

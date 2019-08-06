@@ -9,6 +9,7 @@ define([
   return declare("CssClassSwitcher.widget.CssClassSwitcher", [ _WidgetBase ], {
 
       // modeler params
+      inputTypeSelector: "",
       classGetterMicroflow: "",
       classGetterNanoflow: "",
       elementSelector: "",
@@ -30,7 +31,7 @@ define([
       },
 
       _updateRendering: function () {
-        if (this.classGetterMicroflow) {
+        if (this.inputTypeSelector === 'microflow' && this.classGetterMicroflow) {
           mx.data.action({
             params: {actionname: this.classGetterMicroflow, applyto: "none"},
             callback: lang.hitch(this, function (returnedString) {
@@ -41,7 +42,7 @@ define([
               logger.error(error);
             })
           });
-        } else if (this.classGetterNanoflow && this.classGetterNanoflow.nanoflow) {
+        } else if (this.inputTypeSelector === 'nanoflow' && this.classGetterNanoflow && this.classGetterNanoflow.nanoflow) {
           mx.data.callNanoflow({
             nanoflow: this.classGetterNanoflow,
             callback: lang.hitch(this, function (returnedString) {
@@ -52,6 +53,8 @@ define([
               logger.error(error);
             })
           });
+        } else {
+          logger.error(this.id + " - No valid data source was selected to retrieve CSS classes for theme switching")
         };
       },
 
@@ -65,13 +68,11 @@ define([
         this._elementsToApplyTo.forEach(function (_element) {
           _toRemove.forEach(function (_class) {
             if (_element.classList.contains(_class)) {
-              //logger.debug(_this.friendlyId + ": removing class '" + _class + "' from element '", _element);
               _element.classList.remove(_class);
             }
           });
           _toAdd.forEach(function (_class) {
             if (!_element.classList.contains(_class)) {
-              //logger.debug(_this.friendlyId + ": adding class '" + _class + "' to element: '", _element);
               _element.classList.add(_class);
             }
           });
